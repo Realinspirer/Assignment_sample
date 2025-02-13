@@ -1,0 +1,17 @@
+.text {
+    font-size: 33px;
+    -unity-font-definition: resource('FlatSkin/Font/Roboto-Black');
+    color: rgb(255, 255, 255);
+}
+
+.UI_block {
+    flex-grow: 0;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.hidden {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+}

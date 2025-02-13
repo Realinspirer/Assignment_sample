@@ -1,0 +1,54 @@
+{
+    "name": "Current_input_actions",
+    "maps": [
+        {
+            "name": "Current_map",
+            "id": "6ae22999-c0ee-46f8-92bd-6301f6aa999c",
+            "actions": [
+                {
+                    "name": "CursorPosition",
+                    "type": "Value",
+                    "id": "ba23ae0a-79db-47d2-b32a-91b27d143d92",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PointerDown",
+                    "type": "Button",
+                    "id": "1b77d62e-e1b6-4549-aa34-ca8e3f10f8d9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "128ef69e-8d70-4939-92e7-690c3727b4f7",
+                    "path": "<Pointer>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CursorPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "373f0d07-af3f-4a69-ad65-65be3f527338",
+                    "path": "<Pointer>/press",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PointerDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
