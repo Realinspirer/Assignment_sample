@@ -11,6 +11,9 @@ public class Obstacle_placer_DEBUG : EditorWindow
     GameObject Block_prefab;
     GameObject Obstacles_prefab;
 
+    //player location to avoid placing
+    Grid_tile_struct Player_spawn_loc = new(4, 0);
+
     Obstacle_generator_scriptable req_scriptable_object;
 
     Dictionary<Grid_tile_struct, GameObject> temp_objects = new();
@@ -109,6 +112,12 @@ public class Obstacle_placer_DEBUG : EditorWindow
     {
         try
         {
+            if(x == Player_spawn_loc.Row &&  y == Player_spawn_loc.Col)
+            {
+                Debug.LogWarning("Cannot place there! That's the player location!");
+                return;
+            }
+
             Grid_tile_struct tile = new Grid_tile_struct() { Row = x, Col = y };
             if (Obstacle_data.ContainsKey(tile))
             {
