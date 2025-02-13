@@ -483,6 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 727693877}
+  - component: {fileID: 727693878}
   m_Layer: 0
   m_Name: TEMP_TRANSFORM
   m_TagString: Untagged
@@ -505,6 +506,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &727693878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727693876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bc0dfa42c36ac14499f358bb692aa0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &732606379
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +628,7 @@ MonoBehaviour:
   Req_obstacle_placements: {fileID: 11400000, guid: f64129f8f7d48bc41a52f438beb2ab8a, type: 2}
   Generator_sc: {fileID: 732606381}
   Enemy_prefab: {fileID: 2457697473071206721, guid: 4d31be3bcc1a2e4419bf7e4ba064a8b9, type: 3}
-  max_dist_movement: 2
+  max_dist_movement: 0
 --- !u!1 &773015234
 GameObject:
   m_ObjectHideFlags: 0

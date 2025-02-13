@@ -85,6 +85,11 @@ public class Obstacle_placer_DEBUG : EditorWindow
         {
             req_scriptable_object.Req_tiles = new();
         }
+        if (Obstacle_data == null || Obstacle_data.Count <= 0)
+        {
+            Debug.LogWarning("No data entered!");
+            return;
+        }
 
         EditorUtility.SetDirty(req_scriptable_object);
         req_scriptable_object.Req_tiles.Clear();
@@ -93,6 +98,11 @@ public class Obstacle_placer_DEBUG : EditorWindow
         {
             req_scriptable_object.Req_tiles.Add(item.Key);
         }
+        
+        Debug.Log("Added to scriptable object");
+
+        Destroy_temps();
+        
     }
 
     void Enable_disable_thing(int x, int y)
@@ -118,7 +128,10 @@ public class Obstacle_placer_DEBUG : EditorWindow
         }
         catch
         {
-            Debug.LogError("Something went wrong, check if you spawned the blocks first.");
+            Debug.LogWarning("Objects expired/not present. Spawning new temps.");
+
+            Spawn_temps();
+            Enable_disable_thing(x, y);
         }
     }
     
@@ -131,6 +144,13 @@ public class Obstacle_placer_DEBUG : EditorWindow
         temp_objects.Clear();
         //also clear the obstacle data
         Obstacle_data.Clear();
+
+
+        //clear the transform if left
+        while(Temp_parent.childCount > 0)
+        {
+            DestroyImmediate(Temp_parent.GetChild(0).gameObject);
+        }
     }
     void Spawn_temps()
     {
