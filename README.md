@@ -2,11 +2,11 @@
 Assignment sample<br><br>
 
 ## Sample video for the project <br>
-https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/Sample_video.mp4
+[Sample_video.mp4](https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/Sample_video.mp4)
 
 
 ## Obstacle Tool Instruction <br>
-https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/tool_tutorial.mp4
+[tool_tutorial.mp4](https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/tool_tutorial.mp4)
 
 ## Change Enemy Travel Distance <br>
-https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/change_enemy_distance.mp4
+[change_enemy_distance.mp4](https://raw.githubusercontent.com/Realinspirer/Assignment_sample/main/change_enemy_distance.mp4)
