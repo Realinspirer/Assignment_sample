@@ -35,8 +35,8 @@ public class Pathfinder : MonoBehaviour
     [SerializeField]List<Grid_tile_struct> final_path;
 
 
-    float dist_travelled;
-    float req_dist_travelled;
+    int dist_travelled;
+    int req_dist_travelled;
 
     private void Start()
     {
@@ -47,8 +47,9 @@ public class Pathfinder : MonoBehaviour
         transform.parent = req_grid.transform;
     }
 
-    public void Move_to_position(Grid_tile_struct tile_pos, UnityAction after_action = null, float max_dis = 0)
+    public void Move_to_position(Grid_tile_struct tile_pos, UnityAction after_action = null, int max_dis = 0)
     {
+        //for max distance
         dist_travelled = 0;
         req_dist_travelled = max_dis;
 
@@ -81,57 +82,25 @@ public class Pathfinder : MonoBehaviour
                 
                 Vector3 prev_pos = transform.position;
 
-                //checking for max distance, and then using raycast
-                //to assign the required values and end the thing
-                if(req_dist_travelled > 0)
-                {
-                    if(dist_travelled >= req_dist_travelled)
-                    {
-                        if(Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 5 , transform.position.z), Vector3.down, out var hitInfo, 10, Grid_layermask))
-                        {
-                            Collider collider = hitInfo.collider;
-                            transform.position = collider.transform.position;
-                            var req_sc = collider.GetComponent<GridTile_individual_script>();
-                            req_sc.is_occupied = true;
-                            transform.parent = collider.transform;
-
-                            current_grid_position = req_sc.Current_tile_detail;
-
-
-                            go_to_path = false;
-                            path_index = 0;
-                            afteraction?.Invoke();
-                            return;
-                        }
-                    }
-                }
-
                 //making sure the position doesn't change on y axis
                 transform.position = Vector3.MoveTowards(transform.position, actual_target_pos
                     , Time.deltaTime * speed);
 
-
-                float x_change = transform.position.x - prev_pos.x;
-                float z_change = transform.position.z - prev_pos.z;
-
-                dist_travelled += Mathf.Abs(x_change);
-                dist_travelled += Mathf.Abs(z_change);
-
                 if (transform.position == actual_target_pos)
                 {
                     path_index--;
+                    //check if req dist to travel is greater than 0 and keeping it under.
+                    if(req_dist_travelled > 0)
+                    {
+                        if(dist_travelled >= req_dist_travelled)
+                        {
+                            common_method();
+                        }
+                        dist_travelled++;
+                    }
                     if(path_index < 0)
                     {
-                        go_to_path = false;
-
-                        current_grid_position = final_path[path_index + 1];
-                        path_index = 0;
-
-                        var req_grid = Instantiated_tiles[current_grid_position];
-                        req_grid.is_occupied = true;
-                        transform.parent = req_grid.transform;
-
-                        afteraction?.Invoke();
+                        common_method();
                     }
                 }
             }
@@ -147,8 +116,22 @@ public class Pathfinder : MonoBehaviour
     }
 
 
+    //stuffs that will happen after the path is reached.
+    void common_method()
+    {
+        go_to_path = false;
+        current_grid_position = final_path[path_index + 1];
+        path_index = 0;
 
-    //A* algorithm
+        var req_grid = Instantiated_tiles[current_grid_position];
+        req_grid.is_occupied = true;
+        transform.parent = req_grid.transform;
+
+        afteraction?.Invoke();
+    }
+
+
+    //A* algorithm (grid)
     void Find_path(Grid_tile_struct start_pos, Grid_tile_struct end_pos)
     {
         blocks_to_search = new() { start_pos };
